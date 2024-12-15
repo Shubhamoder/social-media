@@ -12,7 +12,7 @@ app.use(cors());
 
 // Register routes BEFORE starting the server
 app.use("/api", require("./routes/user")); 
-app.use('/auth/',require("./routes/user_post"));
+app.use('/posts',require("./routes/posts"));
 
 // MongoDB Connection and Server Start
 const PORT = process.env.PORT || 5000;

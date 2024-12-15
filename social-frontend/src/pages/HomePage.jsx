@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from '../component/Navbar'
+import MainComponent from '../component/MainContent'
 
 
 function HomePage() {
@@ -7,6 +8,7 @@ function HomePage() {
     
     <div>
         <Navbar/>
+        <MainComponent/>
     </div>
   )
 }

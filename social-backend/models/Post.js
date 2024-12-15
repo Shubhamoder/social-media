@@ -9,7 +9,11 @@ const postSchema = new mongoose.Schema({
     {
       userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
       comment: { type: String, required: true },
-      createdAt: { type: Date, default: Date.now }
+      createdAt: { userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+      userName: { type: String, required: true }, // Store commenting user's name
+      userProfilePic: { type: String, default: "" }, // Store commenting user's profile picture
+      comment: { type: String, required: true },
+      createdAt: { type: Date, default: Date.now } }
     }
   ]
 }, { timestamps: true });
