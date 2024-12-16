@@ -73,6 +73,16 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
+// GET route to fetch all users
+router.get('/users', async (req, res) => {
+  try {
+    const users = await User.find(); // Fetch all users from the database
+    res.status(200).json({ users }); // Return the users in the response
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
 
 

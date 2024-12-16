@@ -19,7 +19,8 @@ const Login = () => {
 
       // Save the token to localStorage (or cookies)
       localStorage.setItem("token", response.data.token);
-
+      
+      localStorage.setItem("userId", response.data.user.id);
       // Redirect to the home page or dashboard
       navigate("/home");
     } catch (err) {

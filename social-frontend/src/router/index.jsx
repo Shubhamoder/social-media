@@ -5,8 +5,12 @@ import RegisterPage from '../pages/RegisterPage';
 import HomePage from '../pages/HomePage';
 import NotFoundPage from '../pages/NotFoundPage';
 import CreatePost from '../pages/CreatePost';
+import ChatPage from '../pages/ChatPage';
+
 
 const AppRouter = () => {
+    const userId = localStorage.getItem("userId");
+    console.log("User ID from localStorage:", userId);
     return (
         <Router>
             <Routes>
@@ -18,6 +22,8 @@ const AppRouter = () => {
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/home" element={<HomePage />} />
                 <Route path="/posts/create" element={<CreatePost />}/>
+                <Route path="/chats" element={<ChatPage userId={userId}
+        />}/>
                 {/* Fallback Route for 404 */}
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
