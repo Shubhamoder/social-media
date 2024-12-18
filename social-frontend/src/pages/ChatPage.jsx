@@ -80,14 +80,15 @@ const ChatComponent = ({ userId }) => {
 
     // Fetch messages for this conversation
     axios
-      .get(`http://localhost:5000/api/messages/conversation/${[userId, id].sort().join("_")}`)
-      .then((response) => {
-        console.log("Messages for conversation:", response.data.messages);
-        setMessages(response.data.messages);
-      })
-      .catch((error) => {
-        console.error("Error fetching messages:", error);
-      });
+  .get(`http://localhost:5000/api/messages/conversation/${[userId, id].sort().join("_")}`)
+  .then((response) => {
+    console.log("Messages for conversation:", response.data.messages);
+    setMessages(response.data.messages);
+  })
+  .catch((error) => {
+    console.error("Error fetching messages:", error);
+  });
+
   };
 
   if (!userId) {

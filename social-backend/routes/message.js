@@ -29,13 +29,17 @@ router.post("/send", async (req, res) => {
 
 // Route to fetch all messages for a specific user
 router.get("/conversation/:conversationId", async (req, res) => {
-  const userId = req.params.userId;
+  const conversationId = req.params.conversationId; // Use conversationId from URL params
+  const [userId1, userId2] = conversationId.split("_"); // Extract user IDs from conversationId
 
   try {
-    // Find all messages where the user is either the sender or receiver
+    // Find all messages where the sender or receiver matches userId1 or userId2
     const messages = await Message.find({
-      $or: [{ senderId: userId }, { receiverId: userId }],
-    }).sort({ timestamp: 1 }); // Sort messages by timestamp (ascending)
+      $or: [
+        { senderId: userId1, receiverId: userId2 },
+        { senderId: userId2, receiverId: userId1 }
+      ],
+    }).sort({ timestamp: -1 });
 
     if (!messages.length) {
       return res.status(404).json({ success: false, message: "No messages found" });
@@ -47,5 +51,7 @@ router.get("/conversation/:conversationId", async (req, res) => {
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 });
+
+
 
 module.exports = router;
